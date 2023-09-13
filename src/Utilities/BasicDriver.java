@@ -41,8 +41,14 @@ public class BasicDriver {
         driver.manage().window().maximize();
 
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-        driver.get("https://opencart.abstracta.us/index.php?route=account/login");
-        login();
+        driver.get("https://demo.opencart.com");
+
+        WebElement myAccountDropDown = driver.findElement(By.xpath("//span[text()='My Account']"));
+        myAccountDropDown.click();
+
+        WebElement register = driver.findElement(By.xpath("(//a[text()='Register'])[1]"));
+        register.click();
+
 
     }
 
@@ -63,14 +69,5 @@ public class BasicDriver {
             throw new RuntimeException(e);
         }
     }
-    public void login() {
-        WebElement username = driver.findElement(By.id("input-email"));
-        username.sendKeys("681815505@qq.com");
 
-        WebElement password = driver.findElement(By.id("input-password"));
-        password.sendKeys("123456!k");
-
-        WebElement loginButton = driver.findElement(By.cssSelector("input[value='Login']"));
-        loginButton.click();
-    }
 }
